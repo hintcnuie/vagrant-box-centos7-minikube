@@ -8,7 +8,6 @@ export BOX_VERSION_BASE=1.3.0
 # Set versions requested of main components (These will be used in Packer and passed to Ansible downstream)
 export BOX_BASE="ilionx/centos7"
 export BOX_BASE_VERSION=1.0.0-20210208
-export ANSIBLE_VERSION=2.10.5
 export MINIKUBE_VERSION=1.17.0
 export DOCKER_VERSION=20.10.2
 export KUBECTL_VERSION=1.20.2
@@ -96,9 +95,8 @@ The box defaults to 2 CPU and 4GB of RAM, it is not advised to limit this.
 ---
 
 ## Versions included in this release
-Based on box [${BOX_BASE}](https://app.vagrantup.com/centos/boxes/7) version ${BOX_BASE_VERSION}
+Based on box [${BOX_BASE}](https://app.vagrantup.com/ilionx/boxes/centos7) version ${BOX_BASE_VERSION}
 * Latest OS updates installed at build time
-* ansible ${ANSIBLE_VERSION}
 * minikube ${MINIKUBE_VERSION}
 * docker ${DOCKER_VERSION}
 * kubectl ${KUBECTL_VERSION}
