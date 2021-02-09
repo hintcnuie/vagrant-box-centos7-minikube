@@ -1,4 +1,9 @@
 ## Changelog
+### 1.3.0-20210209
+* Moved project to Q24 github organization
+* Split project into base CentOS 7 box `ilionx/centos7`, and derivative minikube box `ilionx/centos7-minikube`
+* Moved box from `mrvantage/centos7-minikube` to `ilionx/centos7-minikube`
+
 ### 1.2.0-20210126
 * Refactored base box, no longer using upstream centos/7 box, but building from scratch from the CentOS minimal ISO
 * Made sure VirtualBox guest additions 6.1.18 are installed and running

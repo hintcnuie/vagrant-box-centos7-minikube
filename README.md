@@ -10,7 +10,7 @@ The box resulting is based on a clean CentOS 7 minimal install. I try to keep th
 * kubectl
 * kubetail
 
-Built boxes can be found on [Vagrant Cloud](https://app.vagrantup.com/mrvantage/boxes/centos7-minikube)
+Built boxes can be found on [Vagrant Cloud](https://app.vagrantup.com/ilionx/boxes/centos7-minikube)
 
 ## Prerequisites
 To be able to build the box yourself, you'll need at least following tools installed:
@@ -29,10 +29,10 @@ DEFAULT_VAGRANT_CLOUD_USER="your.username"
 DEFAULT_VAGRANT_CLOUD_TOKEN="your.vagrant.cloud.token"
 ```
 
-2. The script will update box `mrvantage/centos7-minikube`. This name is hardcoded in the scripts. If you wish to create a box in your own account, change the following two environment variables in `build.sh`:
+2. The script will update box `ilionx/centos7-minikube`. This name is hardcoded in the scripts. If you wish to create a box in your own account, change the following two environment variables in `build.sh`:
 
 ```
-export VAGRANT_CLOUD_BOX_USER="mrvantage"
+export VAGRANT_CLOUD_BOX_USER="ilionx"
 export VAGRANT_CLOUD_BOX_NAME="centos7-minikube"
 ```
 

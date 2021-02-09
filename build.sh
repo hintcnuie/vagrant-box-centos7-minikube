@@ -3,11 +3,11 @@
 set -e
 
 # Set version info
-export BOX_VERSION_BASE=1.2.0
-export CENTOS_BASE_ISO="CentOS-7-x86_64-Minimal-2009.iso"
-export CENTOS_BASE_ISO_SHA256="07b94e6b1a0b0260b94c83d6bb76b26bf7a310dc78d7a9c7432809fb9bc6194a"
+export BOX_VERSION_BASE=1.3.0
 
 # Set versions requested of main components (These will be used in Packer and passed to Ansible downstream)
+export BOX_BASE="ilionx/centos7"
+export BOX_BASE_VERSION=1.0.0-20210208
 export ANSIBLE_VERSION=2.10.5
 export MINIKUBE_VERSION=1.17.0
 export DOCKER_VERSION=20.10.2
@@ -21,15 +21,12 @@ export PACKER_VERSION="1.6.6"
 export VAGRANT_VERSION="2.2.14"
 
 # Set the Vagrant cloud user and box name (make sure you have admin permissions to, or are the owner of this repository)
-export VAGRANT_CLOUD_BOX_USER="mrvantage"
+export VAGRANT_CLOUD_BOX_USER="ilionx"
 export VAGRANT_CLOUD_BOX_NAME="centos7-minikube"
 
 # ############################################################################################## #
 # Below this point there should be no need to edit anything, unless you know what you are doing! #
 # ############################################################################################## #
-
-# Generate the final version of the box, adding the date string of today
-export BOX_VERSION=${BOX_VERSION_BASE}-$(date +'%Y%m%d')
 
 echo "Testing if all required tools are installed, please wait..."
 
@@ -68,9 +65,9 @@ fi
 if [ -z "$DEFAULT_VAGRANT_CLOUD_USER" -o -z "$DEFAULT_VAGRANT_CLOUD_TOKEN" ]
 then
     # Ask user for vagrant cloud token
-    echo -n "What is your Vagrant Cloud username? [mrvantage] "
+    echo -n "What is your Vagrant Cloud username? [ilionx] "
     read user
-    user=${user:-mrvantage}
+    user=${user:-ilionx}
     export VAGRANT_CLOUD_USER=${user}
 
     # Ask user for vagrant cloud token
@@ -86,10 +83,11 @@ else
 fi
 
 # Export dynamic versioning info
+export BOX_VERSION=${BOX_VERSION_BASE}-$(date +'%Y%m%d')
 commit=$(git --no-pager log -n 1 --format="%H")
 export BOX_VERSION_DESCRIPTION="
 ## Description
-This base box is based on a clean CentOS 7 minimal install. I try to keep the builds up to date with the latest version of this box.
+This box is based on the ${BOX_BASE} box version ${BOX_BASE_VERSION}. I try to keep the builds up to date with the latest version of this box.
 When the box boots it contains a running minikube, ready to deploy kubenetes manifests, and kubectl is pre configured for the vagrant user.
 Helm is installed to allow the immediate deployment of charts.
 
@@ -114,7 +112,7 @@ $(cat CHANGELOG.md)
 ---
 
 ## Source info
-[View source on Github](https://github.com/mrvantage/vagrant-box-centos7-minikube)
+[View source on Github](https://github.com/Q24/vagrant-box-centos7-minikube)
 
 Built on commit: \`${commit}\`
 "
